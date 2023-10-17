@@ -25,4 +25,4 @@ jobs:
       - name: check current directory
         run: ls -l
       - name: frontend - eslint
-        run: cd bloglist-frontend && npm run eslint
+        run: cd bloglist-frontend && npm run lint

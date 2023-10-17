@@ -124,7 +124,7 @@ describe('With some blogs in the database.', () => {
     expect(undefinedBlog).not.toBeDefined()
   }, timeout)
 
-  test('Blog can be updated.', async () => {
+  test('Blog can be updated (liked).', async () => {
     const firstResult = await api
       .get('/api/blogs')
 
@@ -133,7 +133,9 @@ describe('With some blogs in the database.', () => {
 
     const blogToUpdate = {
       ...originalBlog,
-      title: 'Updated Blog Title'
+      title: 'Updated Blog Title',
+      user: originalBlog.user.id,
+      likes: originalBlog.likes + 1
     }
 
     await api

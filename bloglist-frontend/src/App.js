@@ -38,13 +38,11 @@ const App = () => {
 
   const handleLoginClick = async (event) => {
     event.preventDefault()
-    console.log(`At handle login with password ${password}, username ${username}.`)
 
     try {
       const user = await loginService
         .login(username, password)
 
-      console.log('Login succesful.')
       setUser(user)
       blogService.setToken(user.token)
 

@@ -1,7 +1,5 @@
 name: Deployment Pipeline
 
-run-name: ${{ github.actor }} is running Deployment Pipeline
-
 on:
   push:
     branches:
@@ -18,3 +16,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16.9.0'
+      - name: go to frontend directory
+        run: cd ./bloglist-frontend
+      - name: frontend - npm install
+        run: npm install

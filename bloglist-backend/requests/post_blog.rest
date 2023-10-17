@@ -1,0 +1,11 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImVsaWFzdHVoIiwiaWQiOiI2NDZiNWM3NDljNGYxOWQ1MDFiMDVkYmQiLCJpYXQiOjE2ODQ4Mzg0MDEsImV4cCI6MTY4NDgzOTMwMX0.A_aF3K0QrDCj0B1GuLqCI8rlbSaSRwg7Q0B43D9SoWU
+
+{
+    "title": "Uusi blogi",
+    "author": "test",
+    "url": "www.asd.fi",
+    "likes": "5",
+    "userId": "646b57542024072d7e3a16e5"
+}

@@ -1,0 +1,9 @@
+PUT http://localhost:3003/api/blogs/64677b4a70e88ef331b0eb1e
+Content-Type: application/json
+
+{
+  "title": "Toka b",
+  "author": "Elias",
+  "url": "www.helloworld.fi",
+  "likes": "11"
+}

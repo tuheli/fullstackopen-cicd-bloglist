@@ -38,17 +38,6 @@ jobs:
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
-        run: cd bloglist-backend && npm run test
-      - name: show github context
-        env: 
-          GITHUB_CONTEXT: ${{toJson(github)}}
-        run: echo "$GITHUB_CONTEXT"
-      - name: show job context
-        env: 
-          JOB_CONTEXT: ${{toJson(job)}}
-        run: echo "$JOB_CONTEXT"
-      - name: show steps context
-        env: 
-          STEPS_CONTEXT: ${{toJson(steps)}}
-        run: echo "$STEPS_CONTEXT"
-
+        run: cd bloglist-backend && npm run test &> out-test-logs.txt
+      - name: print file content to terminal
+        run: cd bloglist-backend && cat out-test-logs.txt

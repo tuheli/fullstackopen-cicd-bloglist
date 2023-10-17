@@ -33,4 +33,6 @@ jobs:
         run: cd bloglist-backend && ls -l && npm install
       - name: backend - eslint
         run: cd bloglist-backend && npm run lint
+      - name: backend - tests
+        run: cd bloglist-backend && npm run test
 

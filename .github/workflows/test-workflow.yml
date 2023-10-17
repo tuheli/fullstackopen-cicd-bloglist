@@ -1,0 +1,14 @@
+name: Test Workflow
+
+run-name: ${{ github.actor }} is testing out GitHub Actions
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  Test-Workflow-Job:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Echo Hello World
+        run: echo "Hello World"

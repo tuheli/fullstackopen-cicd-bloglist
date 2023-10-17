@@ -21,4 +21,4 @@ jobs:
       - name: log directory info
         run: ls -l
       - name: go to frontend directory
-        run: cd bloglist-frontend
+        run: cd bloglist-frontend && ls -l

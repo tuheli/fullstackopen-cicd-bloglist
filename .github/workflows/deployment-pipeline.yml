@@ -35,13 +35,15 @@ jobs:
       - name: backend - eslint
         run: cd bloglist-backend && npm run lint
       - name: backend - tests
-        id: backend-tests
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+        run: cd bloglist-backend && npm run test &> out-test-logs.txt
+      - name: store to env
         run: |
-            echo "FOO=$(git status)" >> $GITHUB_ENV
-      - name: Use the value
-        id: step_two
-        run: |
-            echo "${{ env.FOO }}"
+          echo 'CONTENT_ENV<<EOF' >> $GITHUB_ENV
+          cat out-test-logs.txt >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+        working-directory: ./bloglist-backend
+      - name: echo env
+        run: echo "$CONTENT_ENV"

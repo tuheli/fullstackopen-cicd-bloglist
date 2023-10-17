@@ -38,9 +38,6 @@ if (process.env.NODE_ENV === 'production') {
   const BUILD_PATH = path.resolve(__dirname, './build')
   const INDEX_PATH = path.resolve(BUILD_PATH, 'index.html')
 
-  console.log('build path ', BUILD_PATH)
-  console.log('index path ', INDEX_PATH)
-
   app.use(express.static(BUILD_PATH))
   app.get('*', (req, res) => res.sendFile(INDEX_PATH))
 }

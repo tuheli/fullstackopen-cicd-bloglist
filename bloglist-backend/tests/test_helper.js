@@ -1,8 +1,9 @@
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
+const logger = require('../utils/logger')
 
 const saveUser = async user => {
-  console.log(`Saving user ${user.name}`)
+  logger.info(`Saving user ${user.name}`)
   const { username, name, password } = user
 
   const saltRounds = 10

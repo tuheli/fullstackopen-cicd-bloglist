@@ -3,6 +3,7 @@ const supertest = require('supertest')
 const app = require('../app')
 const User = require('../models/user')
 const helper = require('./test_helper')
+const logger = require('../utils/logger')
 const api = supertest(app)
 
 const timeout = 30000
@@ -18,7 +19,7 @@ test('users can be saved', async () => {
     .get('/api/users')
     .expect(200)
 
-  console.log(response.body)
+  logger.info(response.body)
   expect(response.body).toHaveLength(helper.initialUsers.length)
 }, timeout)
 

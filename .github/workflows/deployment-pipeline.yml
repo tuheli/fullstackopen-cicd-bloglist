@@ -11,6 +11,7 @@ on:
 jobs:
   Deployment-Pipeline:
     runs-on: ubuntu-20.04
+    if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#SKIP') }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3

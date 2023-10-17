@@ -40,9 +40,8 @@ jobs:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
         run: |
-          {
-            echo 'JSON_RESPONSE<<EOF'
-            curl https://example.com
-            echo EOF
-          } >> "$GITHUB_OUTPUT"
-        working-directory: ./bloglist-backend
+            echo "FOO=$(git status)" >> $GITHUB_ENV
+      - name: Use the value
+        id: step_two
+        run: |
+            echo "${{ env.FOO }}"

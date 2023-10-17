@@ -20,7 +20,7 @@ test('Only title is rendered by default.', () => {
   const url = screen.queryByText('Test Url')
   const likes = screen.queryByTestId('likes')
 
-  expect(author).toBe(null)
+  expect(author).toBe('123')
   expect(url).toBe(null)
   expect(likes).toBe(null)
 })

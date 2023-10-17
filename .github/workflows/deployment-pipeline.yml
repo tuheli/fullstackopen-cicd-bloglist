@@ -38,6 +38,7 @@ jobs:
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          SECRET: ${{ secrets.SECRET }}
         run: cd bloglist-backend && npm run test &> out-test-logs.txt
       - name: store to env
         run: |

@@ -21,4 +21,4 @@ jobs:
       - name: log directory info
         run: ls -l
       - name: go to frontend directory
-        run: cd bloglist-frontend && ls -l
+        run: cd bloglist-frontend && ls -l && npm install

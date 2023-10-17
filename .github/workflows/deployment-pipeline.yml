@@ -20,5 +20,7 @@ jobs:
           node-version: '16.9.0'
       - name: log directory info
         run: ls -l
-      - name: go to frontend directory
+      - name: frontend - npm install
         run: cd bloglist-frontend && ls -l && npm install
+      - name: check current directory
+        run: ls -l

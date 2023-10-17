@@ -51,3 +51,6 @@ jobs:
         env:
           HAS_FAILED: ${{contains(join(env.CONTENT_ENV), 'FAIL')}}
         run: echo "$HAS_FAILED"
+      - name: go to failure if test failed
+        if: ${{contains(join(env.CONTENT_ENV), 'FAIL')}}
+        run: echo "::error backend api tests failed"

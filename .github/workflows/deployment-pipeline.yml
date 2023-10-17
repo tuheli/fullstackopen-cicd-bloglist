@@ -39,4 +39,8 @@ jobs:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
         run: cd bloglist-backend && npm run test
+      - name: show github context
+        env: 
+          GITHUB_CONTEXT: ${{toJson(github)}}
+        run: echo "$GITHUB_CONTEXT"
 

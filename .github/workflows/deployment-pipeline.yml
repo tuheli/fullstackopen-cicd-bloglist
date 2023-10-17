@@ -1,0 +1,17 @@
+name: Deployment Pipeline
+
+run-name: ${{ github.actor }} is running Deployment Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  Deployment-Pipeline:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3

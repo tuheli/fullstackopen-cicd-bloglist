@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16.9.0'
+      - name: log directory info
+        run: ls -l
       - name: go to frontend directory
         run: cd bloglist-frontend
-      - name: frontend - npm install
-        run: npm install

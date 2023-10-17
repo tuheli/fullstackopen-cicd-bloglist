@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  const BUILD_PATH = path.resolve(__dirname, '../bloglist-frontend/build')
+  const BUILD_PATH = path.resolve(__dirname, './build')
   const INDEX_PATH = path.resolve(BUILD_PATH, 'index.html')
 
   console.log('build path ', BUILD_PATH)

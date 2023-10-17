@@ -35,9 +35,10 @@ jobs:
       - name: backend - eslint
         run: cd bloglist-backend && npm run lint
       - name: backend - tests
+        id: backend-tests
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
-        run: cd bloglist-backend && npm run test >> "$GITHUB_ENV"
-      - name: log github env
-        run: echo "$GITHUB_ENV"
+        run: cd bloglist-backend && echo "TEST_LOGS=$(npm run test)" >> $GITHUB_ENV
+      - name: print the logs
+        run: echo "${{ env.TEST_LOGS }}""

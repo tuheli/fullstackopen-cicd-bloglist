@@ -47,3 +47,7 @@ jobs:
         working-directory: ./bloglist-backend
       - name: echo env
         run: echo "$CONTENT_ENV"
+      - name: did tests fail?
+        env:
+          HAS_FAILED: ${{contains(join(env.CONTENT_ENV), 'FAIL')}}
+        run: echo "$HAS_FAILED"

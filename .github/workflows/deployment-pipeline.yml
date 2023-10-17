@@ -24,3 +24,5 @@ jobs:
         run: cd bloglist-frontend && ls -l && npm install
       - name: check current directory
         run: ls -l
+      - name: frontend - eslint
+        run: cd bloglist-frontend && npm run eslint

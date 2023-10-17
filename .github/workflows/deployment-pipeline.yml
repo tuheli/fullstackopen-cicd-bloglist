@@ -38,5 +38,5 @@ jobs:
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
-        run: cd bloglist-backend && npm run test
+        run: cd bloglist-backend && set -o pipefail && npm run test
 

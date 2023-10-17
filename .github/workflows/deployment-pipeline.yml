@@ -38,6 +38,6 @@ jobs:
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
-        run: cd bloglist-backend && npm run test &> out-test-logs.txt
-      - name: print file content to terminal
-        run: cd bloglist-backend && cat out-test-logs.txt
+        run: cd bloglist-backend && npm run test >> "$GITHUB_ENV"
+      - name: log github env
+        run: echo "$GITHUB_ENV"

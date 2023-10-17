@@ -39,6 +39,8 @@ jobs:
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
-        run: cd bloglist-backend && echo "TEST_LOGS=$(npm run test)" >> $GITHUB_ENV
-      - name: print the logs
-        run: echo "${{ env.TEST_LOGS }}""
+        run: cd bloglist-backend && echo "TEST_LOGS=$(npm run test)" >> $GITHUB_OUTPUT
+      - name: log test output
+        env:
+          TEST_LOGS: ${{ steps.backend-tests.outputs.TEST_LOGS }}
+        run: echo "test logs are $TEST_LOGS"

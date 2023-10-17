@@ -24,6 +24,8 @@ jobs:
         run: ls -l
       - name: frontend - eslint
         run: cd bloglist-frontend && npm run lint
-      - name: frontend - jest tests
+      - name: frontend - tests
         run: cd bloglist-frontend && npm run test
+      - name: frontend - build
+        run: cd bloglist-frontend && npm run build
 

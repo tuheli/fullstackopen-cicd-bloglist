@@ -55,3 +55,8 @@ jobs:
           SECRET: ${{ secrets.SECRET }}
       - name: build client
         run: npm run build:client
+      - name: deploy to fly io
+        uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

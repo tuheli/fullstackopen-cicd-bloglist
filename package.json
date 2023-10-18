@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "author": "Elias Tuhola",
+  "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_ENV=production node index.js",
     "dev": "cross-env NODE_ENV=development nodemon index.js",
@@ -13,8 +15,6 @@
     "start:client": "cd ./client && npm start",
     "test:e2e": "cd ./client && npm run test:e2e"
   },
-  "author": "Elias Tuhola",
-  "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",

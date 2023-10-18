@@ -31,6 +31,7 @@ describe('Blog app', function() {
       cy.login(existingUser)
       cy.contains('Logout')
       cy.contains('Create Blog')
+      cy.contains('Broken test???!??€#€"#')
     })
 
     it('Fails with wrong credentials.', function() {

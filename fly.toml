@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for autumn-resonance-4449 on 2023-10-17T14:33:54+03:00
+# fly.toml app configuration file generated for autumn-resonance-4449 on 2023-10-18T17:53:04+03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -7,20 +7,21 @@ app = "autumn-resonance-4449"
 primary_region = "arn"
 
 [deploy]
-  strategy = "bluegreen"
+  strategy = "rolling"
+  release_command = "npm run build:client"
 
 [processes]
-  app = "node app.js"
-
+  app = "node index.js"
+  
 [build]
   [build.args]
-    NODE_VERSION = "16.9.0"
+    NODE_VERSION = "16.19.0"
 
 [env]
-  PORT = "3003"
+  PORT = "3000"
 
 [http_service]
-  internal_port = 3003
+  internal_port = 3000
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true

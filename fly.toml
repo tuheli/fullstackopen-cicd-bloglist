@@ -9,13 +9,13 @@ primary_region = "arn"
 [build]
 
 [deploy]
-  strategy = "bluegreen"
+  strategy = "rolling"
 
 [env]
-  PORT = "3003"
+  PORT = "3000"
 
 [processes]
-  app = "node app.js"
+  app = "node index.js"
 
 [http_service]
   internal_port = 3000

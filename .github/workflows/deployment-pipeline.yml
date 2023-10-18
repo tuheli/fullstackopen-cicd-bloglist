@@ -48,6 +48,6 @@ jobs:
         working-directory: ./bloglist-backend
       - name: show the logs
         run: echo "$CONTENT_ENV"
-      - name: check if tests failed
+      - name: exit if tests failed
         if: ${{contains(join(env.CONTENT_ENV), 'FAIL')}}
         run: exit 1

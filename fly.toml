@@ -6,16 +6,19 @@
 app = "autumn-resonance-4449"
 primary_region = "arn"
 
-[build]
-
 [deploy]
   strategy = "rolling"
-
-[env]
-  PORT = "3000"
+  release_command = "npm run build:client"
 
 [processes]
   app = "node index.js"
+  
+[build]
+  [build.args]
+    NODE_VERSION = "16.19.0"
+
+[env]
+  PORT = "3000"
 
 [http_service]
   internal_port = 3000

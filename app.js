@@ -1,13 +1,13 @@
-const config = require('./src/utils/config')
-const logger = require('./src/utils/logger')
+const config = require('./server/utils/config')
+const logger = require('./server/utils/logger')
 const express = require('express')
 require('express-async-errors')
 const cors = require('cors')
 const mongoose = require('mongoose')
-const blogsRouter = require('./src/controllers/blogs')
-const usersRouter = require('./src/controllers/users')
-const { requestLogger, unknownEndpoint, errorHandler } = require('./src/utils/middleware')
-const loginRouter = require('./src/controllers/login')
+const blogsRouter = require('./server/controllers/blogs')
+const usersRouter = require('./server/controllers/users')
+const { requestLogger, unknownEndpoint, errorHandler } = require('./server/utils/middleware')
+const loginRouter = require('./server/controllers/login')
 const path = require('path')
 const app = express()
 
@@ -30,7 +30,7 @@ app.use('/api/users', usersRouter)
 app.use('/api/blogs', blogsRouter)
 
 if (process.env.NODE_ENV === 'test') {
-  const testingRouter = require('./src/controllers/testing')
+  const testingRouter = require('./server/controllers/testing')
   app.use('/api/testing', testingRouter)
 }
 

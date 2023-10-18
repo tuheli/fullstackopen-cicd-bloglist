@@ -18,37 +18,26 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16.9.0'
-      - name: log directory info
-        run: ls -l
-      - name: frontend - npm install
-        run: cd bloglist-frontend && ls -l && npm install
-      - name: check current directory
-        run: ls -l
-      - name: frontend - eslint
-        run: cd bloglist-frontend && npm run lint
-      - name: frontend - tests
-        run: cd bloglist-frontend && npm run test
-      - name: frontend - build
-        run: cd bloglist-frontend && npm run build
-      - name: backend - npm install
-        run: cd bloglist-backend && ls -l && npm install
-      - name: backend - eslint
-        run: cd bloglist-backend && npm run lint
-      - name: backend - api tests - write logs to file
+      - name: npm install
+        run: npm install
+      - name: lint
+        run: npm run lint
+      - name: client - test
+        run: npm run test:client
+      - name: api tests - write logs to file
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
           SECRET: ${{ secrets.SECRET }}
-        run: cd bloglist-backend && npm run test &> out-test-logs.txt
-      - name: backend - api tests - store logs to variable
+        run: npm run test &> out-test-logs.txt
+      - name: api tests - store logs to variable
         run: |
           echo 'CONTENT_ENV<<EOF' >> $GITHUB_ENV
           cat out-test-logs.txt >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
-        working-directory: ./bloglist-backend
-      - name: backend - api tests - show logs
+      - name: api tests - show logs
         run: echo "$CONTENT_ENV"
-      - name: backend - api tests - exit 1 if logs contain 'FAIL'
+      - name: api tests - exit 1 if logs contain 'FAIL'
         if: ${{contains(join(env.CONTENT_ENV), 'FAIL')}}
         run: exit 1
       - name: e2e tests
@@ -57,14 +46,12 @@ jobs:
           command: npm run test:e2e
           start: |
             npm run start:test
-            npm run start:frontend
+            npm run start:client
           wait-on: http://localhost:3000
           browser: chrome
-          working-directory: ./bloglist-backend
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
           SECRET: ${{ secrets.SECRET }}
-      - name: backend - build ui
-        run: npm run build:ui
-        working-directory: ./bloglist-backend
+      - name: build client
+        run: npm run build:client

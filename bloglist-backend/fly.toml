@@ -6,10 +6,21 @@
 app = "autumn-resonance-4449"
 primary_region = "arn"
 
+[deploy]
+  strategy = "bluegreen"
+
+[processes]
+  app = "node app.js"
+
 [build]
+  [build.args]
+    NODE_VERSION = "16.9.0"
+
+[env]
+  PORT = "3003"
 
 [http_service]
-  internal_port = 3000
+  internal_port = 3003
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true

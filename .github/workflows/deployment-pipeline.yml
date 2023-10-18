@@ -65,3 +65,6 @@ jobs:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
           SECRET: ${{ secrets.SECRET }}
+      - name: backend - build ui
+        run: npm run build:ui
+        working-directory: ./bloglist-backend

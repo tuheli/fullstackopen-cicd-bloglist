@@ -34,24 +34,20 @@ jobs:
         run: cd bloglist-backend && ls -l && npm install
       - name: backend - eslint
         run: cd bloglist-backend && npm run lint
-      - name: backend - tests
+      - name: backend - api tests - write logs to file
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
           SECRET: ${{ secrets.SECRET }}
         run: cd bloglist-backend && npm run test &> out-test-logs.txt
-      - name: store to env
+      - name: store test logs to CONTENT_ENV
         run: |
           echo 'CONTENT_ENV<<EOF' >> $GITHUB_ENV
           cat out-test-logs.txt >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
         working-directory: ./bloglist-backend
-      - name: echo env
+      - name: show the logs
         run: echo "$CONTENT_ENV"
-      - name: did tests fail?
-        env:
-          HAS_FAILED: ${{contains(join(env.CONTENT_ENV), 'FAIL')}}
-        run: echo "$HAS_FAILED"
-      - name: go to failure if test failed
+      - name: check if tests failed
         if: ${{contains(join(env.CONTENT_ENV), 'FAIL')}}
         run: exit 1

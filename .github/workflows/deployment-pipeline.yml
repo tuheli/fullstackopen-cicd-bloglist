@@ -51,3 +51,10 @@ jobs:
       - name: exit if tests failed
         if: ${{contains(join(env.CONTENT_ENV), 'FAIL')}}
         run: exit 1
+      - name: e2e tests
+        uses: cypress-io/github-action@v5
+        with:
+          command: cd bloglist-frontend && npm run test:e2e
+          start: cd bloglist-backend && npm run start:test
+          wait-on: http://localhost:3003
+          browser: chrome

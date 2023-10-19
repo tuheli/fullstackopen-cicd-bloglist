@@ -9,6 +9,7 @@ const usersRouter = require('./server/controllers/users')
 const { requestLogger, unknownEndpoint, errorHandler } = require('./server/utils/middleware')
 const loginRouter = require('./server/controllers/login')
 const path = require('path')
+const healthCheckRouter = require('./server/controllers/healthCheck')
 const app = express()
 
 mongoose.set('strictQuery', false)
@@ -28,6 +29,7 @@ app.use(requestLogger)
 app.use('/api/login', loginRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/blogs', blogsRouter)
+app.use('/api/healthCheck', healthCheckRouter)
 
 if (process.env.NODE_ENV === 'test') {
   const testingRouter = require('./server/controllers/testing')

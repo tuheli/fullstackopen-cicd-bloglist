@@ -7,7 +7,7 @@ app = "autumn-resonance-4449"
 primary_region = "arn"
 
 [deploy]
-  strategy = "rolling"
+  strategy = "bluegreen"
   release_command = "npm run build:client"
 
 [processes]

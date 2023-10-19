@@ -66,8 +66,6 @@ jobs:
     needs: [Deployment-Pipeline]
     runs-on: ubuntu-20.04
     if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#SKIP') }}
-    permissions:
-      contents: write
     steps:
       - name: checkout
         uses: actions/checkout@v2
